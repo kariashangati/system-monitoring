@@ -1,3 +1,13 @@
+export interface AppConfig {
+  urls: string[];
+  proxies: string[];
+  email: string;
+  intervalSeconds: number;
+  blockedLinks: string[];
+  crawlEnabled: boolean;
+  crawlDepth: number;
+}
+
 export interface UptimeLog {
   id: string;
   url: string;
@@ -12,24 +22,15 @@ export interface UptimeLog {
 
 export interface CrawledLink {
   id: string;
+  monitorId?: string;
   parentUrl: string;
   href: string;
-  linkText: string;
+  linkText?: string;
   isStatic: boolean;
   isDynamic: boolean;
+  lastStatus: 'up' | 'down' | 'pending';
   lastChecked?: string;
-  lastStatus?: 'up' | 'down' | 'pending';
   responseTime?: number;
   isBlocked: boolean;
   depth: number;
-}
-
-export interface AppConfig {
-  urls: string[];
-  proxies: string[];
-  email: string;
-  intervalSeconds: number;
-  blockedLinks: string[];
-  crawlEnabled: boolean;
-  crawlDepth: number;
 }
